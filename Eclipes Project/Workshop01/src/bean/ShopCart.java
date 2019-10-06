@@ -43,9 +43,10 @@ public class ShopCart implements Serializable{
     
     public int total() {
     	int tmp = 0;
-    	Iterator interator = cartItems.entrySet().iterator();
+    	Iterator<?> interator = cartItems.entrySet().iterator();
     	while(interator.hasNext()) {
-    		Map.Entry<Long, ProductLine> cartItem2 = (Map.Entry<Long, ProductLine>)interator.next();
+    		@SuppressWarnings("unchecked")
+			Map.Entry<Long, ProductLine> cartItem2 = (Map.Entry<Long, ProductLine>)interator.next();
     		tmp = tmp + cartItem2.getValue().getQuatity() * cartItem2.getValue().getProduct().getPrice();
     	}
     	return tmp;

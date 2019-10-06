@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,8 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import DB.CustomerDB;
-import bean.Customer;
+import DB.OrderTBLDB;
 import bean.ShopCart;
 
 /**
@@ -41,12 +39,16 @@ public class ShoppingCardController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getSession().setAttribute("listCard", ProductController.shop.getCartItems());
-		ArrayList<Customer> listCustomer = CustomerDB.listAll();
-		int total = ProductController.shop.total();
-		request.getSession().setAttribute("listCustomer", listCustomer);
-		request.getSession().setAttribute("total", total);
-		RequestDispatcher rd = request.getRequestDispatcher("shopcart.jsp");
+		String payment = request.getParameter("pay");
+		int pay = 0;
+		if (payment.equals("Card")) {
+			pay = 1;
+		}
+		String id = request.getSession().getAttribute("sessionname").toString();
+		
+		OrderTBLDB.addOrder(pay, id, ProductController.shop.getCartItems());
+		ProductController.shop = new ShopCart();
+		RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
 		rd.forward(request, response);
 	}
 

@@ -21,7 +21,7 @@
 			<option value="Cash">Cash</option>
 			<option value="Card">Card</option>
 		</select><br>
-		<table border="0">
+		<table border="1">
 			<tr>
 				<th>Product</th>
 				<th>Quantity</th>
@@ -31,8 +31,7 @@
 				<tr>
 					<td>${card.value.product.name}</td>
 					<td>${card.value.quatity}</td>
-					<td>${card.value.product.price}</td>
-					<td>					
+					<td>${card.value.product.price}</td>					
 				</tr>
 			</c:forEach>
 		</table>

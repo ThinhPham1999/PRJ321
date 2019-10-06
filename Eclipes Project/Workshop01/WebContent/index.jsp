@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	
+    <h1>All product</h1>
 		<table border="1">
 			<tr>
 				<th>ID</th>
@@ -28,8 +28,8 @@
 		</table>
 		<br>
 		<br>
-	<form action="ShoppingCardController" method="post">
-		<input type="submit" method="post" value="View Shopping Card">
+	<form action="ProductController" method="post">
+		<input type="submit" value="View Shopping Card">
 	</form>
 </body>
 </html>

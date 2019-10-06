@@ -9,11 +9,17 @@
 <body>
 	<h1><%= request.getAttribute("messageFailed")!=null?request.getAttribute("messageFailed"):""%></h1>
 	<form action="LoginController" method="post">
-		<label>CustomerID</label>
-		<input type="text" name="customerID"/><br>
-		<label>Password</label>
-		<input type="text" name="pass"/><br>
-		<input type="submit" value="login">
+		<table>
+			<tr>
+				<td><label>CustomerID</label></td>
+				<td><input type="text" name="customerID"/></td>
+			</tr>
+			<tr>
+				<td><label>Password</label></td>
+				<td><input type="password" name="pass"/></td>
+			</tr>
+		</table>
+			<input type="submit" value="login">
 	</form>
 </body>
 </html>

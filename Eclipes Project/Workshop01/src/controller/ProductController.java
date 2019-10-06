@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -43,6 +42,7 @@ public class ProductController extends HttpServlet {
 			id = Integer.parseInt(act);
 		}
 		
+		@SuppressWarnings("unchecked")
 		ArrayList<ProductLine>list = (ArrayList<ProductLine>) request.getSession().getAttribute("listProductLine");
 		for(ProductLine pro:list) {
 			if (pro.getProduct().getID() == id)
@@ -58,7 +58,13 @@ public class ProductController extends HttpServlet {
 	 */
 	public static ShopCart shop = new ShopCart();
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		request.getSession().setAttribute("listCard", ProductController.shop.getCartItems());
+		ArrayList<Customer> listCustomer = CustomerDB.listAll();
+		int total = ProductController.shop.total();
+		request.getSession().setAttribute("listCustomer", listCustomer);
+		request.getSession().setAttribute("total", total);
+		RequestDispatcher rd = request.getRequestDispatcher("shopcart.jsp");
+		rd.forward(request, response);
 	}
 
 }
