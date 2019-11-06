@@ -9,6 +9,6 @@
     </head>
     <body>
         <d:Display></d:Display>
-        ${applicationScope.counter.hitcount}
+        <p>Hit count: <p>${hit}
     </body>
 </html>

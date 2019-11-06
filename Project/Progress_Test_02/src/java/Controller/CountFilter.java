@@ -2,7 +2,6 @@
 package Controller;
 
 import java.io.IOException;
-import javafx.application.Application;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -49,7 +48,7 @@ public class CountFilter implements Filter {
         
         hitcount++;
         System.out.println(hitcount);
-        Application.setAtrribute();
+        request.setAttribute("hit", hitcount);
         chain.doFilter(request, response);
     }
 
